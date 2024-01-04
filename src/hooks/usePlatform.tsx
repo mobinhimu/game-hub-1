@@ -1,5 +1,6 @@
-import useFetched from "./useFetched";
-import { Platform } from "./useGameGrid";
+import { platform } from "../services/platform";
 
-const usePlatform = () => useFetched<Platform>("/platforms/lists/parents");
+const usePlatform = () => {
+  return { data: platform, error: null, loading: null };
+};
 export default usePlatform;

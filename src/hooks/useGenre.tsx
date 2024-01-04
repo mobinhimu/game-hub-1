@@ -1,4 +1,4 @@
-import { genre } from "../genre";
+import { genre } from "../services/genre";
 
 export interface Genre {
   id: number;
