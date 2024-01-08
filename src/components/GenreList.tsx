@@ -11,8 +11,6 @@ interface GenreListProps {
 function GenreList({ onGenre, gameQuery: { genreObj } }: GenreListProps) {
   const { data: genres, isLoading } = useGenre();
 
-  console.log(genres);
-
   if (isLoading)
     return (
       <Box

@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "../services/api-client";
-import { ResponseData } from "./useFetched";
+import axios, { ResponseData } from "../services/api-client";
 import { platform } from "../data/platform";
 
 export interface Platform {

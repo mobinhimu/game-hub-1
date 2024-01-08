@@ -1,5 +1,5 @@
 import { Box, Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
-import { Game } from "../hooks/useGameGrid";
+import { Game } from "../hooks/useGame";
 import GameCardIcon from "./GameCardIcon";
 import MetacriticBadge from "./MetacriticBadge";
 import { optimizedImage } from "../helper/image-optimization";

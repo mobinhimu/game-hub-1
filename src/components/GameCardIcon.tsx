@@ -1,4 +1,4 @@
-import { Platform } from "../hooks/useGameGrid";
+import { Platform } from "../hooks/useGame";
 
 import { FaWindows, FaXbox, FaLinux, FaAndroid } from "react-icons/fa";
 import { MdOutlinePhoneIphone } from "react-icons/md";

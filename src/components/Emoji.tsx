@@ -6,9 +6,6 @@ import eye from "../assets/bulls-eye.webp";
 
 function Emoji({ rating }: { rating: number }) {
   if (rating < 3) return null;
-
-  console.log(rating);
-
   const ratingObj: {
     [key: number]: { src: string; alt: string; boxSize: string };
   } = {

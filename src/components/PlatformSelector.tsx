@@ -2,7 +2,7 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { FaChevronDown } from "react-icons/fa";
 import usePlatform from "../hooks/usePlatform";
 import { type GameQuery } from "../App";
-import { type Platform } from "../hooks/useGameGrid";
+import { type Platform } from "../hooks/useGame";
 
 interface PlatformSelectorProps {
   onPlatform: (platform: Platform) => void;
