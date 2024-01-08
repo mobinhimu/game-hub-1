@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import axios, { AxiosError, CanceledError } from "../services/api-client";
 import { useEffect, useState } from "react";
 
-interface ResponseData<T> {
+export interface ResponseData<T> {
   results: T[];
 }
 function useFetched<T>(

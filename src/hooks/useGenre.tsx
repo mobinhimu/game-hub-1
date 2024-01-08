@@ -1,4 +1,6 @@
-import { genre } from "../services/genre";
+import { useQuery } from "@tanstack/react-query";
+import axios from "../services/api-client";
+import { ResponseData } from "./useFetched";
 
 export interface Genre {
   id: number;
@@ -7,6 +9,11 @@ export interface Genre {
 }
 
 const useGenre = () => {
-  return { data: genre, loading: null, error: null };
+  return useQuery({
+    queryKey: ["genres"],
+    queryFn: () =>
+      axios<ResponseData<Genre>>("/genres").then((res) => res.data),
+    staleTime: 1 * 24 * 60 * 60 * 1000,
+  });
 };
 export default useGenre;

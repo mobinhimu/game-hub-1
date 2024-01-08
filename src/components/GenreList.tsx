@@ -1,4 +1,4 @@
-import { Button, Image, List, ListItem } from "@chakra-ui/react";
+import { Box, Button, Image, List, ListItem, Spinner } from "@chakra-ui/react";
 import useGenre, { type Genre } from "../hooks/useGenre";
 import { optimizedImage } from "../helper/image-optimization";
 import { GameQuery } from "../App";
@@ -9,11 +9,25 @@ interface GenreListProps {
 }
 
 function GenreList({ onGenre, gameQuery: { genreObj } }: GenreListProps) {
-  const { data: genres } = useGenre();
+  const { data: genres, isLoading } = useGenre();
+
+  console.log(genres);
+
+  if (isLoading)
+    return (
+      <Box
+        height={"100vh"}
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
+        <Spinner />
+      </Box>
+    );
 
   return (
     <List>
-      {genres.map((genre) => (
+      {genres?.results.map((genre) => (
         <ListItem
           key={genre.id}
           display={"flex"}
