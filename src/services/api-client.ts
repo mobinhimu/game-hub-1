@@ -2,6 +2,7 @@ import axios, { type AxiosRequestConfig } from "axios";
 
 export interface ResponseData<T> {
   results: T[];
+  next: string | null;
 }
 
 const apiClient = axios.create({
