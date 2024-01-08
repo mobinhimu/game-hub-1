@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import axios, { ResponseData } from "../services/api-client";
 import { genre } from "../data/genre";
+import ApiClient from "../services/api-client";
 
 export interface Genre {
   id: number;
@@ -8,11 +8,12 @@ export interface Genre {
   image_background: string;
 }
 
+const apiClient = new ApiClient<Genre>("/genres");
+
 const useGenre = () => {
   return useQuery({
     queryKey: ["genres"],
-    queryFn: () =>
-      axios<ResponseData<Genre>>("/genres").then((res) => res.data),
+    queryFn: () => apiClient.getAll(),
     staleTime: 1 * 24 * 60 * 60 * 1000,
     initialData: { results: genre },
   });

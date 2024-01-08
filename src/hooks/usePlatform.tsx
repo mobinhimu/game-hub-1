@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import axios, { ResponseData } from "../services/api-client";
 import { platform } from "../data/platform";
+import ApiClient from "../services/api-client";
 
 export interface Platform {
   id: number;
@@ -8,13 +8,12 @@ export interface Platform {
   slug: string;
 }
 
+const apiClient = new ApiClient<Platform>("/platforms/lists/parents");
+
 function usePlatform() {
   return useQuery({
     queryKey: ["platform"],
-    queryFn: () =>
-      axios
-        .get<ResponseData<Platform>>("/platforms/lists/parents")
-        .then((res) => res.data),
+    queryFn: () => apiClient.getAll(),
     staleTime: 1 * 24 * 60 * 60 * 1000,
     initialData: { results: platform },
   });

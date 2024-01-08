@@ -45,7 +45,7 @@ function GenreList({ onGenre, gameQuery: { genreObj } }: GenreListProps) {
             }}
             variant={"link"}
             fontWeight={genre.id === genreObj?.id ? "bold" : "normal"}
-            fontSize={"0.75rem"}
+            fontSize={"1rem"}
           >
             {genre.name}
           </Button>
