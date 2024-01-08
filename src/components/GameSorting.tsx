@@ -8,11 +8,14 @@ export interface SortingOrder {
 }
 
 interface GameSortingProps {
-  onSorting: (sorting: SortingOrder) => void;
+  onSorting: (sorting: string) => void;
   gameQuery: GameQuery;
 }
 
-function GameSorting({ gameQuery: { sorting }, onSorting }: GameSortingProps) {
+function GameSorting({
+  gameQuery: { sortingValue },
+  onSorting,
+}: GameSortingProps) {
   const sortingOrder: SortingOrder[] = [
     {
       value: "",
@@ -37,7 +40,7 @@ function GameSorting({ gameQuery: { sorting }, onSorting }: GameSortingProps) {
   ];
 
   const selectedOrder = sortingOrder.find(
-    (sorOrd) => sorOrd.value === sorting?.value
+    ({ value }) => value === sortingValue
   )?.label;
 
   return (
@@ -47,13 +50,9 @@ function GameSorting({ gameQuery: { sorting }, onSorting }: GameSortingProps) {
       </MenuButton>
 
       <MenuList>
-        {sortingOrder.map((sort) => (
-          <MenuItem
-            key={sort.value}
-            value={sort.value}
-            onClick={() => onSorting(sort)}
-          >
-            {sort.label}
+        {sortingOrder.map(({ value, label }) => (
+          <MenuItem key={value} value={value} onClick={() => onSorting(value)}>
+            {label}
           </MenuItem>
         ))}
       </MenuList>

@@ -1,14 +1,14 @@
 import { Box, Button, Image, List, ListItem, Spinner } from "@chakra-ui/react";
-import useGenre, { type Genre } from "../hooks/useGenre";
-import { optimizedImage } from "../helper/image-optimization";
 import { GameQuery } from "../App";
+import { optimizedImage } from "../helper/image-optimization";
+import useGenre from "../hooks/useGenre";
 
 interface GenreListProps {
-  onGenre: (genre: Genre) => void;
+  onGenre: (genreId?: number) => void;
   gameQuery: GameQuery;
 }
 
-function GenreList({ onGenre, gameQuery: { genreObj } }: GenreListProps) {
+function GenreList({ onGenre, gameQuery: { genreId } }: GenreListProps) {
   const { data: genres, isLoading } = useGenre();
 
   if (isLoading)
@@ -25,9 +25,9 @@ function GenreList({ onGenre, gameQuery: { genreObj } }: GenreListProps) {
 
   return (
     <List>
-      {genres?.results.map((genre) => (
+      {genres?.results.map(({ id, image_background, name }) => (
         <ListItem
-          key={genre.id}
+          key={id}
           display={"flex"}
           alignItems={"center"}
           gap={"0.5rem"}
@@ -36,18 +36,16 @@ function GenreList({ onGenre, gameQuery: { genreObj } }: GenreListProps) {
           <Image
             height={"30px"}
             width={"30px"}
-            src={optimizedImage(genre.image_background)}
+            src={optimizedImage(image_background)}
             borderRadius={"8px"}
           />
           <Button
-            onClick={() => {
-              onGenre(genre);
-            }}
+            onClick={() => onGenre(id)}
             variant={"link"}
-            fontWeight={genre.id === genreObj?.id ? "bold" : "normal"}
+            fontWeight={id === genreId ? "bold" : "normal"}
             fontSize={"1rem"}
           >
-            {genre.name}
+            {name}
           </Button>
         </ListItem>
       ))}

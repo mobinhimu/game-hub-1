@@ -4,31 +4,29 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
-import GameSorting, { SortingOrder } from "./components/GameSorting";
+import GameSorting from "./components/GameSorting";
 import GameHeading from "./components/GameHeading";
-import { Platform } from "./hooks/usePlatform";
-import { Genre } from "./hooks/useGenre";
 
 export interface GameQuery {
-  genreObj: Genre;
-  platformObj: Platform;
-  sorting: SortingOrder;
+  genreId: number | undefined;
+  platformId: number | undefined;
+  sortingValue: string;
   searchGame: string;
 }
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
-  function handleGenre(genreObj: Genre) {
-    setGameQuery({ ...gameQuery, genreObj: { ...genreObj } });
+  function handleGenre(genreId?: number) {
+    setGameQuery({ ...gameQuery, genreId });
   }
 
-  function handlePlatform(platformObj: Platform) {
-    setGameQuery({ ...gameQuery, platformObj: { ...platformObj } });
+  function handlePlatform(platformId?: number) {
+    setGameQuery({ ...gameQuery, platformId });
   }
 
-  function handleSorting(sorting: SortingOrder) {
-    setGameQuery({ ...gameQuery, sorting: { ...sorting } });
+  function handleSorting(sortingValue: string) {
+    setGameQuery({ ...gameQuery, sortingValue });
   }
 
   function handleGameSearch(searchGame: string) {

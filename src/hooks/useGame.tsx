@@ -20,9 +20,9 @@ function useGame(gameQuery: GameQuery, gamePerPage: number) {
     queryFn: ({ pageParam }) =>
       apiClient.getAll({
         params: {
-          genres: gameQuery?.genreObj?.id,
-          parent_platforms: gameQuery?.platformObj?.id,
-          ordering: gameQuery?.sorting?.label,
+          genres: gameQuery?.genreId,
+          parent_platforms: gameQuery?.platformId,
+          ordering: gameQuery?.sortingValue,
           search: gameQuery?.searchGame,
           page: pageParam,
           page_size: gamePerPage,
