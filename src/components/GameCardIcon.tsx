@@ -1,10 +1,9 @@
-import { Platform } from "../hooks/useGame";
-
 import { FaWindows, FaXbox, FaLinux, FaAndroid } from "react-icons/fa";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { FaPlaystation } from "react-icons/fa6";
 import { SiNintendo } from "react-icons/si";
 import { Icon } from "@chakra-ui/react";
+import { Platform } from "../hooks/usePlatform";
 
 function GameCardIcon({ slug }: Platform) {
   const icons = {
