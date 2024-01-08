@@ -13,9 +13,9 @@ function PlatformSelector({
   onPlatform,
   gameQuery: { platformObj },
 }: PlatformSelectorProps) {
-  const { data: platform } = usePlatform();
+  const { data: platforms } = usePlatform();
 
-  const platformName = platform?.find(
+  const platformName = platforms?.results?.find(
     (pla) => pla.id === platformObj?.id
   )?.name;
 
@@ -25,7 +25,7 @@ function PlatformSelector({
         {platformName ? platformName : "Platform"}
       </MenuButton>
       <MenuList>
-        {platform.map((platform) => (
+        {platforms?.results?.map((platform) => (
           <MenuItem key={platform.id} onClick={() => onPlatform(platform)}>
             {platform.name}
           </MenuItem>
