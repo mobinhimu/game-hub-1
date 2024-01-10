@@ -1,14 +1,12 @@
 import { Box, Button, Image, List, ListItem, Spinner } from "@chakra-ui/react";
-import { GameQuery } from "../App";
 import { optimizedImage } from "../helper/image-optimization";
 import useGenre from "../hooks/useGenre";
+import useGameAction from "../store";
 
-interface GenreListProps {
-  onGenre: (genreId?: number) => void;
-  gameQuery: GameQuery;
-}
+function GenreList() {
+  const handleGenre = useGameAction((state) => state.handleGenre);
+  const genreId = useGameAction((state) => state.gameQuery.genreId);
 
-function GenreList({ onGenre, gameQuery: { genreId } }: GenreListProps) {
   const { data: genres, isLoading } = useGenre();
 
   if (isLoading)
@@ -40,7 +38,7 @@ function GenreList({ onGenre, gameQuery: { genreId } }: GenreListProps) {
             borderRadius={"8px"}
           />
           <Button
-            onClick={() => onGenre(id)}
+            onClick={() => handleGenre(id)}
             variant={"link"}
             fontWeight={id === genreId ? "bold" : "normal"}
             fontSize={"1rem"}

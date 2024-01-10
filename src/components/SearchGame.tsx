@@ -1,16 +1,18 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { type FormEvent, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
-import { type NavBarProps } from "./NavBar";
+import useGameAction from "../store";
 
-function SearchGame({ onSearchGame }: NavBarProps) {
+function SearchGame() {
+  const handleGameSearch = useGameAction((state) => state.handleGameSearch);
+
   const gameRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   function handleSubmit(eve: FormEvent) {
     eve.preventDefault();
 
-    if (gameRef.current?.value) onSearchGame(gameRef.current.value);
+    if (gameRef.current?.value) handleGameSearch(gameRef.current.value);
     formRef.current?.reset();
   }
 

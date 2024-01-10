@@ -1,43 +1,38 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { FaChevronDown } from "react-icons/fa6";
-import { GameQuery } from "../App";
+import useGameAction from "../store";
 
 export interface SortingOrder {
   value: string;
   label: string;
 }
 
-interface GameSortingProps {
-  onSorting: (sorting: string) => void;
-  gameQuery: GameQuery;
-}
+const sortingOrder: SortingOrder[] = [
+  {
+    value: "",
+    label: "Relevance",
+  },
+  {
+    value: "added",
+    label: "Date Added",
+  },
+  {
+    value: "-released",
+    label: "Release Date",
+  },
+  {
+    value: "-rating",
+    label: "Avg Rating",
+  },
+  {
+    value: "-metacritic",
+    label: "Popularity",
+  },
+];
 
-function GameSorting({
-  gameQuery: { sortingValue },
-  onSorting,
-}: GameSortingProps) {
-  const sortingOrder: SortingOrder[] = [
-    {
-      value: "",
-      label: "Relevance",
-    },
-    {
-      value: "added",
-      label: "Date Added",
-    },
-    {
-      value: "-released",
-      label: "Release Date",
-    },
-    {
-      value: "-rating",
-      label: "Avg Rating",
-    },
-    {
-      value: "-metacritic",
-      label: "Popularity",
-    },
-  ];
+function GameSorting() {
+  const sortingValue = useGameAction((state) => state.gameQuery.sortingValue);
+  const handleSorting = useGameAction((state) => state.handleSorting);
 
   const selectedOrder = sortingOrder.find(
     ({ value }) => value === sortingValue
@@ -51,7 +46,11 @@ function GameSorting({
 
       <MenuList>
         {sortingOrder.map(({ value, label }) => (
-          <MenuItem key={value} value={value} onClick={() => onSorting(value)}>
+          <MenuItem
+            key={value}
+            value={value}
+            onClick={() => handleSorting(value)}
+          >
             {label}
           </MenuItem>
         ))}

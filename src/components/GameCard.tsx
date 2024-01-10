@@ -23,7 +23,7 @@ function GameCard({
 
         <HStack justifyContent={"space-between"} mt={"8px"}>
           <Box>
-            {parent_platforms.map(({ platform }) => (
+            {parent_platforms?.map(({ platform }) => (
               <GameCardIcon key={platform.id} {...platform} />
             ))}
           </Box>

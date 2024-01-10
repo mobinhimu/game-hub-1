@@ -4,15 +4,11 @@ import image from "../assets/logo.webp";
 import ToggleDarkMode from "./ToggleDarkMode";
 import SearchGame from "./SearchGame";
 
-export interface NavBarProps {
-  onSearchGame: (searchGame: string) => void;
-}
-
-function NavBar({ onSearchGame }: NavBarProps) {
+function NavBar() {
   return (
     <HStack padding={"10px"}>
       <Image boxSize="60px" src={image} />
-      <SearchGame onSearchGame={onSearchGame} />
+      <SearchGame />
       <ToggleDarkMode />
     </HStack>
   );
