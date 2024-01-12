@@ -19,6 +19,9 @@ class ApiClient<T> {
     apiClient
       .get<ResponseData<T>>(this.endPoint, config)
       .then((res) => res.data);
+
+  get = (id?: number | string, config?: AxiosRequestConfig) =>
+    apiClient.get<T>(`${this.endPoint}/${id}`, config).then((res) => res.data);
 }
 
 export default ApiClient;

@@ -4,7 +4,7 @@ import usePlatform from "../hooks/usePlatform";
 import useGameAction from "../store";
 
 function PlatformSelector() {
-  const platformId = useGameAction((state) => state.platformId);
+  const platformId = useGameAction((state) => state.gameQuery.platformId);
   const handlePlatform = useGameAction((state) => state.handlePlatform);
 
   const { data: platforms } = usePlatform();

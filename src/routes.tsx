@@ -1,15 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./components/pages/Home";
-import AppLayout from "./components/AppLayout";
-import GameDetail from "./components/pages/GameDetail";
+import Home from "./pages/Home";
+import AppLayout from "./pages/AppLayout";
+import GameDetail from "./pages/GameDetail";
+import PageNotFound from "./pages/PageNotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <PageNotFound />,
     children: [
       { index: true, element: <Home /> },
-      { path: "games/:id", element: <GameDetail /> },
+      { path: "games/:slug", element: <GameDetail /> },
     ],
   },
 ]);
