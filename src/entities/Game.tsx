@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { Platform } from "./Platform";
 
 export interface Game {
@@ -9,5 +8,5 @@ export interface Game {
   metacritic: number;
   rating_top: number;
   slug: string;
-  description: ReactNode;
+  description_raw: string;
 }

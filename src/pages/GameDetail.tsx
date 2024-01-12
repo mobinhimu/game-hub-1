@@ -1,17 +1,19 @@
 import { useParams } from "react-router-dom";
 import useGameDetails from "../hooks/useGameDetails";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import ExpandableText from "../components/ExpandableText";
 
 function GameDetail() {
   const { slug } = useParams();
   const { data, isLoading } = useGameDetails(slug);
 
+  if (isLoading || !data?.description_raw) return null;
+
   return (
     <Box>
       <Heading>{data?.name}</Heading>
-      <Text
-        dangerouslySetInnerHTML={{ __html: data?.description || "null" }}
-      ></Text>
+      <ExpandableText text={data.description_raw} />
     </Box>
   );
 }
