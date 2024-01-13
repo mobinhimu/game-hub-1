@@ -3,7 +3,7 @@ import { MdOutlinePhoneIphone } from "react-icons/md";
 import { FaPlaystation } from "react-icons/fa6";
 import { SiNintendo } from "react-icons/si";
 import { Icon } from "@chakra-ui/react";
-import { Platform } from "../entities/Platform";
+import Platform from "../entities/Platform";
 
 function GameCardIcon({ slug }: Platform) {
   const icons = {

@@ -1,4 +1,4 @@
-export interface GameVideo {
+export default interface GameVideo {
   count: number;
   results: {
     data: { max: string; ["480"]: string };
