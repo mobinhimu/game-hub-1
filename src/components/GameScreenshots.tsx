@@ -5,6 +5,7 @@ import { Image, SimpleGrid } from "@chakra-ui/react";
 function GameScreenshots() {
   const { slug } = useParams();
   const { data } = useGameScreenshots(slug as string);
+
   return (
     <SimpleGrid
       columns={{

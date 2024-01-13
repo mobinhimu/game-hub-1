@@ -1,11 +1,14 @@
 import { useParams } from "react-router-dom";
 import useGameVideo from "../hooks/useGameVideo";
+import { Heading } from "@chakra-ui/react";
 
 function GameVideoPreview() {
   const { slug } = useParams();
   const { data, isLoading } = useGameVideo(slug as string);
 
   if (isLoading) return null;
+
+  if (!data?.results.length) return <Heading>Video Not Found !</Heading>;
 
   return (
     <video

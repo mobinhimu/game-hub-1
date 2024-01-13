@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
@@ -13,13 +13,24 @@ function GameDetail() {
   if (isLoading || !data?.description_raw) return null;
 
   return (
-    <Box>
-      <Heading>{data?.name}</Heading>
-      <ExpandableText text={data.description_raw} />
+    <SimpleGrid
+      gap={{
+        base: 4,
+        lg: 6,
+      }}
+      columns={{
+        base: 1,
+        lg: 2,
+      }}
+    >
+      <Box>
+        <Heading>{data?.name}</Heading>
+        <ExpandableText text={data.description_raw} />
+      </Box>
       <GameAttributes />
       <GameVideoPreview />
       <GameScreenshots />
-    </Box>
+    </SimpleGrid>
   );
 }
 
