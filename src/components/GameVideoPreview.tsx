@@ -3,7 +3,9 @@ import useGameVideo from "../hooks/useGameVideo";
 
 function GameVideoPreview() {
   const { slug } = useParams();
-  const { data } = useGameVideo(`${slug}/movies` as string);
+  const { data, isLoading } = useGameVideo(slug as string);
+
+  if (isLoading) return null;
 
   return (
     <video
@@ -14,7 +16,9 @@ function GameVideoPreview() {
     >
       Sorry, your browser doesn't support embedded videos, but don't worry, you
       can
-      <a href="https://archive.org/details/BigBuckBunny_124">download it</a>
+      <a href={data?.results.map((result) => result.data.max)[0]}>
+        download it
+      </a>
       and watch it with your favorite video player!
     </video>
   );
