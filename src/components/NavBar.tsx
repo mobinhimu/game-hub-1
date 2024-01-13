@@ -9,8 +9,8 @@ function NavBar() {
   return (
     <HStack padding={"10px"}>
       <Link to={"/"}>
-        <Image boxSize="60px" src={image} />
-      </Link>{" "}
+        <Image maxWidth={"60px"} src={image} />
+      </Link>
       <SearchGame />
       <ToggleDarkMode />
     </HStack>

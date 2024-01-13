@@ -1,4 +1,4 @@
-import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
@@ -10,7 +10,12 @@ function GameDetail() {
   const { slug } = useParams();
   const { data, isLoading } = useGameDetails(slug as string);
 
-  if (isLoading || !data?.description_raw) return null;
+  if (isLoading || !data?.description_raw)
+    return (
+      <Flex height={"100vh"} justifyContent="center" alignItems="center">
+        <Spinner size={"xl"} />
+      </Flex>
+    );
 
   return (
     <SimpleGrid
