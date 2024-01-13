@@ -5,7 +5,7 @@ import { Game } from "../entities/Game";
 
 const apiClient = new ApiClient<Game>("/games");
 
-function useGame(gamePerPage: number) {
+function useGame(gamePerPage?: number) {
   const gameQuery = useGameAction((store) => store.gameQuery);
 
   return useInfiniteQuery<ResponseData<Game>, Error>({

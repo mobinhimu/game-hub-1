@@ -1,6 +1,8 @@
 import { Badge } from "@chakra-ui/react";
 
-function MetacriticBadge({ metacritic }: { metacritic: number }) {
+function MetacriticBadge({ metacritic }: { metacritic?: number }) {
+  if (!metacritic) return null;
+
   const metaCbadge =
     metacritic > 70 ? "green" : metacritic > 50 ? "yellow" : "";
 
